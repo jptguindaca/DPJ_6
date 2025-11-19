@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using System.Transactions;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        rb.GetComponent<Rigidbody>().freezeRotation = true;
+        rb.freezeRotation = true;
     }
 
     void Start()
@@ -40,5 +41,19 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
         }
+    }
+    private void FixedUpdate()
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+        
+        Vector3 velocity = rb.velocity;
+
+        float targetVelX = horizontalInput * moveSpeed;
+
+        float newVelX = Mathf.MoveTowards(velocity.x, targetVelX, 50f * Time.fixedDeltaTime);
+
+        rb.velocity = new Vector3(Mathf.Clamp(newVelX, -maxSpeed, maxSpeed), velocity.y, 0f);
+
+            
     }
 }
