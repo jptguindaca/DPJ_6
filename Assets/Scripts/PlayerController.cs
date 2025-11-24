@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Transactions;
 using UnityEngine;
@@ -39,21 +40,44 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+
+            Jump();
         }
+
+        
+       
     }
     private void FixedUpdate()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
         
-        Vector3 velocity = rb.velocity;
+        Vector3 velocity = rb.linearVelocity;
 
         float targetVelX = horizontalInput * moveSpeed;
 
         float newVelX = Mathf.MoveTowards(velocity.x, targetVelX, 50f * Time.fixedDeltaTime);
 
-        rb.velocity = new Vector3(Mathf.Clamp(newVelX, -maxSpeed, maxSpeed), velocity.y, 0f);
+        rb.linearVelocity = new Vector3(Mathf.Clamp(newVelX, -maxSpeed, maxSpeed), velocity.y, 0f);
+
+        
 
             
+    }
+
+    public void Jump()
+    {
+        
+        Vector3 speed = rb.linearVelocity;
+
+        speed.y = 0f;
+
+
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+       
+       
+
+
+
+
     }
 }
