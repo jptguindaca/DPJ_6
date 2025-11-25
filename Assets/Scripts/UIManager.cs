@@ -9,13 +9,14 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
 
-    public TMP_Text scoretext;
+    public TMP_Text Scoretext;
 
-    public TMP_Text livestext;
+    public TMP_Text Livestext;
 
     public int startlives = 3;
 
     public int score = 0;
+
 
     private int lives;
 
@@ -33,8 +34,12 @@ public class UIManager : MonoBehaviour
         Instance = this;
 
         lives = startlives;
-        AddScore(0);    
+       
         SetLives(startlives);
+
+        UpdateScoreUI();
+
+        UpdateLivesUI();
 
 
     }
@@ -47,25 +52,27 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
 
-       
+
     }
 
-    void AddScore(int amount = 5)
+     public void AddScore(int amount)
     {
 
-        amount += score;
+        score+=amount;
 
-        score = amount;
+        
+
         UpdateScoreUI();
+
+       
 
     }
 
     void UpdateScoreUI()
     {
-
-       scoretext.text=score.ToString();
+        
+       Scoretext.text=score.ToString();
 
     }
 
@@ -80,7 +87,7 @@ public class UIManager : MonoBehaviour
     void UpdateLivesUI()
     {
 
-        livestext.text = lives.ToString();
+        Livestext.text = lives.ToString();
 
     }
 }

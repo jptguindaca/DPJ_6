@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius;
     public float horizontalInput;
 
-    private bool isGrounded = true;
+    private bool isGrounded;
 
     public Transform groundCheck;
     public LayerMask groundLayer;
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(horizontalInput, 0, 0);
 
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
 
             Jump();

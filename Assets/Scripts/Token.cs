@@ -1,81 +1,44 @@
-using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Collider))]
-
 public class Token : MonoBehaviour
 {
-    
-
     public int value;
-    public AudioClip pickupsfx;
+    public AudioClip pickupSfx;
     private AudioSource audioSource;
-    private Collider token;
+    private Collider tokenCollider;
 
     private void Awake()
     {
-      token = GetComponent<Collider>();
+        tokenCollider = GetComponent<Collider>();
+        if (tokenCollider != null)
+        {
+            tokenCollider.isTrigger = true;
+        }
 
-        if(token != null && token.isTrigger==true)
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player"))
         {
 
+
+
+            UIManager.Instance.AddScore(value);
+
+            if (pickupSfx != null)
+            {
+                audioSource.PlayOneShot(pickupSfx);
                
-
-        }
-
-
-      audioSource = gameObject.AddComponent<AudioSource>();
-
-        if(audioSource.enabled == true)
-        {
-
-           
-
-
-        }
-
-
-
-
-    }
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-   void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") == false)
-        {
-
-            if (UIManager.Instance != null)
-            {
-                UIManager.Instance.score += 0;
+                
             }
-
-
-            if (pickupsfx != null)
-            {
-                audioSource.Play();
-            }
-
-
-
-
-
+            Destroy(gameObject,pickupSfx.length);
 
         }
-
-
     }
 }
