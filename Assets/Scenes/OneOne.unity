@@ -200,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 156141959}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.262, z: 4.378}
+  m_LocalPosition: {x: -4.43, y: 2.262, z: -13.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -295,6 +295,7 @@ GameObject:
   - component: {fileID: 181730302}
   - component: {fileID: 181730301}
   - component: {fileID: 181730300}
+  - component: {fileID: 181730303}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -396,6 +397,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181730298}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &181730303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181730298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 963fa2563bc5f6e42add45d219e02c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Win
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,7 +2574,7 @@ Transform:
   m_GameObject: {fileID: 1479285085}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.33, y: 1.336, z: 11.69}
+  m_LocalPosition: {x: -5.85, y: 1.336, z: -17.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
